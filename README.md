@@ -1,9 +1,11 @@
 # autofill-sample-database
 
 1. Instale o psycopg2 e o faker
+	
 	psycopg2 - http://initd.org/psycopg/docs/install.html
 		
 		pip install psycopg2
+		
 	faker - https://pypi.python.org/pypi/Faker
 		
 		pip install Faker
