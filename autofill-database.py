@@ -1,6 +1,7 @@
 import psycopg2
 import random
 import time
+import datetime
 from faker import Factory
 
 ######################### CONFIGS - EDIT THIS ###################
@@ -143,7 +144,7 @@ def genSintomas():
 ################################ INSERT FUNCIONS ####################################
 def insertMedicos():
     f = open('queriesInsertMedicos.txt', 'w')
-    for i in range(0,10):
+    for i in range(0,15):
         cur = conn.cursor()
         commandString = "insert into MEDICO values(%s, %s, %s, %s, %s) returning CPF_MEDICO"
         cur.execute(commandString, (genCPF(), genNome(), genEspecialidade(), genDepartamento(), genDataNascimento('medico')))
@@ -325,4 +326,4 @@ insertTratamento()
 insertDiagnostico()
 conn.commit()
 
-print("Finished in %s seconds" % (time.time() - startTime)) 
+print("Finished in %.4s seconds" % (time.time() - startTime)) 
