@@ -242,7 +242,7 @@ def createTablePaciente():
         pass
 
 def createTableAnamnese():
-    commandString = "CREATE TABLE Anamnese ( ID_Anamnese serial, CPF_medico varchar(25), data_da_realizacao date, detalhes varchar(500), PRIMARY KEY (ID_anamnese), FOREIGN KEY (CPF_medico) REFERENCES medico(CPF_medico) );"
+    commandString = "CREATE TABLE Anamnese ( ID_Anamnese serial, CPF_medico varchar(25), data_da_realizacao date, detalhes varchar(500), PRIMARY KEY (ID_anamnese), FOREIGN KEY (CPF_medico) REFERENCES medico(CPF_medico) ON DELETE CASCADE);"
     cur = conn.cursor()
     try:
         cur.execute(commandString)
@@ -264,7 +264,7 @@ def createTableRemedio():
         pass
 
 def createTableExame():
-    commandString = "CREATE TABLE Exame ( ID_exame serial, nome character varying(50), CPF_medico varchar(25), CPF_paciente varchar(25), data_da_realizacao date, resultado character varying(200), PRIMARY KEY (ID_exame), FOREIGN KEY (CPF_medico) REFERENCES medico(CPF_medico), FOREIGN KEY (CPF_paciente) REFERENCES paciente(CPF_paciente) );"
+    commandString = "CREATE TABLE Exame ( ID_exame serial, nome character varying(50), CPF_medico varchar(25), CPF_paciente varchar(25), data_da_realizacao date, resultado character varying(200), PRIMARY KEY (ID_exame), FOREIGN KEY (CPF_medico) REFERENCES medico(CPF_medico) ON DELETE CASCADE, FOREIGN KEY (CPF_paciente) REFERENCES paciente(CPF_paciente) ON DELETE CASCADE);"
     cur = conn.cursor()
     try:
         cur.execute(commandString)
@@ -275,7 +275,7 @@ def createTableExame():
         pass
 
 def createTableTratamento():
-    commandString = "CREATE TABLE Tratamento ( ID_tratamento serial, nome character varying(50), descricao character varying(200), CPF_medico varchar(25), CPF_paciente varchar(25), inicio date, termino date, PRIMARY KEY (ID_tratamento), FOREIGN KEY (CPF_medico) REFERENCES medico(CPF_medico), FOREIGN KEY (CPF_paciente) REFERENCES paciente(CPF_paciente) );"
+    commandString = "CREATE TABLE Tratamento ( ID_tratamento serial, nome character varying(50), descricao character varying(200), CPF_medico varchar(25), CPF_paciente varchar(25), inicio date, termino date, PRIMARY KEY (ID_tratamento), FOREIGN KEY (CPF_medico) REFERENCES medico(CPF_medico) ON DELETE CASCADE, FOREIGN KEY (CPF_paciente) REFERENCES paciente(CPF_paciente) ON DELETE CASCADE);"
     cur = conn.cursor()
     try:
         cur.execute(commandString)
@@ -286,7 +286,7 @@ def createTableTratamento():
         pass
 
 def createTableDiagnostico():
-    commandString = "CREATE TABLE Diagnostico ( ID_diagnostico serial, nome character varying(50), causas character varying(200), sintomas character varying(200), CPF_paciente varchar(25), PRIMARY KEY (ID_diagnostico), FOREIGN KEY (CPF_paciente) REFERENCES paciente(CPF_paciente) );"
+    commandString = "CREATE TABLE Diagnostico ( ID_diagnostico serial, nome character varying(50), causas character varying(200), sintomas character varying(200), CPF_paciente varchar(25), PRIMARY KEY (ID_diagnostico), FOREIGN KEY (CPF_paciente) REFERENCES paciente(CPF_paciente) ON DELETE CASCADE );"
     cur = conn.cursor()
     try:
         cur.execute(commandString)
